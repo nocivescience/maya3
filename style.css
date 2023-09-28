@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Fuggles&family=Pixelify+Sans&display=swap");
+body {
+  font-family: "Open Sans", sans-serif;
+  font-family: "Pixelify Sans", cursive;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#game {
+  display: grid;
+  grid-template-columns: auto 150px;
+  grid-template-rows: 1fr auto 1fr;
+  gap: 30px;
+  perspective: 600px;
+}
+
+#maze {
+  position: relative;
+  grid-row: 1/-1;
+  grid-column: 1;
+  width: 350px;
+  height: 315px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#end {
+  width: 65px;
+  height: 65px;
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+#joystick {
+  position: relative;
+  background-color: #000;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 50px;
+  grid-row: 2;
+}
+
+#joystick-head {
+  position: relative;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: grab;
+  animation: glow 1s infinite alternate ease-in-out;
+}
+
+@keyframes glow {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+.joystick-arrow:nth-of-type(1) {
+  position: absolute;
+  bottom: 55px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+}
+
+.joystick-arrow:nth-of-type(2) {
+  position: absolute;
+  top: 55px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #fff;
+}
+
+.joystick-arrow:nth-of-type(3) {
+  position: absolute;
+  left: 55px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #fff;
+}
+
+.joystick-arrow:nth-of-type(4) {
+  position: absolute;
+  right: 55px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fff;
+}
+
+#note {
+  grid-row: 3;
+  grid-column: 2;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+  transition: opacity 3s;
+}
+
+.ball {
+  position: absolute;
+  margin-top: -10px;
+  margin-left: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff0000;
+}
+
+.wall {
+  position: absolute;
+  bakcground-color: #0099ff;
+  transform-origin: top left;
+  margin-left: -5px;
+}
+
+.wall::before {
+  top: -10px;
+}
+
+.wall::after {
+  bottom: -10px;
+}
+
+.black-hole {
+  position: absolute;
+  margin-top: -10px;
+  margin-left: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #000;
+  animation: black-hole 1s infinite alternate ease-in-out;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+    body{
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        width: 500px;
+        height: 500px;
+        background-color: #3b3b3b51;
+        position: relative;
+        box-shadow: 1px 1px 10px #00d9ff;
+        /* border: #00d9ff solid 1px; */
+        border-radius: 5px;
+    }
+    .ball {
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+    }
+    h1{
+        color: white;
+        font-family: 'Ubuntu', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    h1  .letra{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: animacion 1s linear infinite;
+        cursor: grab;
+    }
+    @keyframes animacion{
+        0%, 100% {
+            transform: rotateX(0deg);
+        }
+        50% {
+            transform: rotateX(1080deg);
+        }
+    }
+</style>
+
+<body>
+    <h1></h1>
+    <div class="container" id="container"></div>
+    <script>
+        let balls = [];
+        const containerEl = document.getElementById('container');
+        balls = [
+            { column: 1, row: 1 },
+        ].map(ball => ({
+            x: ball.column ,
+            y: ball.row ,
+            velocityX: 5,
+            velocityY: 2,
+        }))
+        const interval = 10;
+        function textoAnimado(){
+            const tituloEl = document.querySelector('h1');
+            const texto= 'hola palta';
+            for (let i = 0; i < texto.length; i++) {
+                const contenedor= document.createElement('a');
+                contenedor.addEventListener('mouseover', () => {
+                    contenedor.classList.add('letra');
+                })
+                contenedor.textContent = texto[i];
+                contenedor.addEventListener('mouseout', () => {
+                    contenedor.classList.remove('letra');
+                });
+                // void contenedor.offsetWidth;
+                contenedor.classList.add('letra');
+                tituloEl.appendChild(contenedor);
+            }
+        }
+        textoAnimado();
+        function moveBall(i) {
+            containerEl.innerHTML = '';
+            const ball = balls[i];
+            const ballElement = document.createElement('div');
+            ballElement.classList.add('ball');
+            ballElement.style.left = ball.x + 'px';
+            ballElement.style.top = ball.y + 'px';
+            ballElement.style.width = '50px';
+            ballElement.style.height = '50px';
+            // ballElement.style.transform = `translate(${ball.x}px, ${ball.y}px)`;
+            ball.x += ball.velocityX;
+            ball.y += ball.velocityY;
+            if (ball.x > containerEl.clientWidth - parseFloat(ballElement.style.width.replace('px', ''))) {
+                ball.velocityX *= -1;
+            }else if (ball.x < 0) {
+                ball.velocityX *= -1;
+            }
+            if (ball.y > containerEl.clientHeight - parseFloat(ballElement.style.height.replace('px', ''))) {
+                ball.velocityY *= -1;
+            }else if (ball.y < 0) {
+                ball.velocityY *= -1;
+            }
+            containerEl.appendChild(ballElement);
+        }
+        setInterval(() => {
+            moveBall(0);
+        }, interval);
+    </script>
+</body>
+</html>

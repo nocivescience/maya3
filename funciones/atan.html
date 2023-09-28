@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let punto1 = {
+            x: 0,
+            y: 0
+        };
+        let punto2 = {
+            x: 10,
+            y: 10
+        };
+        const getAngle = (p1, p2) => {
+            let angle = Math.atan((p2.y - p1.y) / (p2.x - p1.x));
+            return angle;
+        };
+        setInterval(() => {
+            punto2.x--;
+            if (punto2.x < -13) punto2.x = 13;
+            console.log(`
+                punto 1: (${punto1.x},${punto1.y})
+                punto 2: (${punto2.x},${punto2.y})
+                angulo: ${getAngle(punto1,punto2)}
+            `);
+        }, 1000);
+    </script>
+</body>
+
+</html>

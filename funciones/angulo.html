@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        Math.minmax = (value, limit) => {
+            return Math.max(Math.min(value, limit), -limit);
+        };
+        let valor=-18;
+        let limite=10;
+        setInterval(() => {
+            valor++;
+            console.log(valor);
+            if(valor>18) valor=-18;
+            if(valor>limite){
+                console.log("El valor es mayor que el limite");
+            }else{
+                console.log("El valor es menor que el limite");
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
